@@ -1,12 +1,9 @@
-# EDR Heartbeat Spammer - 500 loud PS loops
+# Loop that spawns 500 noisy PowerShell heartbeats 💓
 
-$cmd = "powershell.exe -NoExit -Command `"& (gcm 'iex') ('while('+ '$'+'true'+'){Write-Host `"💓 LOUD ART TEST: $(Get-Date)`" -ForegroundColor Red; Start-Sleep -Seconds 1}`)`""
+$payload = '& (gcm ''iex'') (''while($true){Write-Host \"💓 LOUD ART TEST: ''$(Get-Date)''\" -ForegroundColor Red; Start-Sleep -Seconds 1}'')'
 
 for ($i = 1; $i -le 500; $i++) {
-    Write-Host "[$i] Launching heartbeat 💓"
-
-    # Launch the noisy heartbeat as new PS process
-    Start-Process "powershell.exe" -ArgumentList "-NoExit", "-Command", "& (gcm 'iex') ('while('+ '$'+'true'+'){Write-Host `"💓 LOUD ART TEST: $(Get-Date)`" -ForegroundColor Red; Start-Sleep -Seconds 1}')"
-
+    Write-Host "[$i] Spawning a LOUD window"
+    Start-Process powershell.exe -ArgumentList "-NoExit", "-Command", $payload
     Start-Sleep -Milliseconds 200
 }

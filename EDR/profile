@@ -1,0 +1,4 @@
+if (!(Test-Path $profile)) {
+    New-Item -ItemType File -Path $profile -Force
+}
+notepad $profile

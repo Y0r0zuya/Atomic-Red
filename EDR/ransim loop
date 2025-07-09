@@ -1,0 +1,11 @@
+# Path to your EXE
+$exePath = "C:\Path\To\Your\payload.exe"
+
+# Infinite loop
+while ($true) {
+    Write-Host "[$(Get-Date -Format T)] Launching: $exePath" -ForegroundColor Cyan
+    Start-Process -FilePath $exePath -WindowStyle Hidden
+
+    # Wait 6 minutes (360 seconds)
+    Start-Sleep -Seconds 360
+}

@@ -1,9 +1,14 @@
-# Loop that spawns 500 noisy PowerShell heartbeats 💓
+# Spawns 500 loud PowerShell windows with heartbeats 💓
 
-$payload = '& (gcm ''iex'') (''while($true){Write-Host \"💓 LOUD ART TEST: ''$(Get-Date)''\" -ForegroundColor Red; Start-Sleep -Seconds 1}'')'
+$innerCommand = @"
+while (`$true) {
+    Write-Host '💓 LOUD ART TEST: $(Get-Date)' -ForegroundColor Red
+    Start-Sleep -Seconds 1
+}
+"@
 
 for ($i = 1; $i -le 500; $i++) {
-    Write-Host "[$i] Spawning a LOUD window"
-    Start-Process powershell.exe -ArgumentList "-NoExit", "-Command", $payload
+    Write-Host "[$i] Spawning loud PS window..."
+    Start-Process powershell.exe -ArgumentList "-NoExit", "-Command", $innerCommand
     Start-Sleep -Milliseconds 200
 }
